@@ -15,6 +15,7 @@ Route::get('/', 'RumbukController@library');
 Route::post('/', 'RumbukController@store');
 Route::get('/peminjaman', 'LogController@show');
 Route::get('/insert', 'RumbukController@create');
+Route::post('/pinjam', 'RumbukController@pinjam');
 Route::get('/{id}', 'RumbukController@show');
 Route::get('/{id}/edit', 'RumbukController@edit');
 Route::put('/{id}', 'RumbukController@update');

@@ -227,10 +227,11 @@
                         <div class="col-sm-6">
                             <div id="addToCarts" style="font-family: "Times New Roman";">
                                 <button id="addToCarts-hide" class="btn btn-active col-sm-1 text-center" style="width: 30px; height: 30px; background-color: rgb(69, 158, 188); color: white;">x</button>
-                                <p class="col-xs-8" >Add To Cart: ganteng</p>
+                                <p id="addToCarts-text" class="col-xs-8" >Add To Cart: ganteng</p>
                             </div>
                         </div>
-
+                        
+                        
                         <div class="col-sm-6" style="text-align: right;">
                             <button id="prev" class="btn btn-success">prev</button>
                             <?php $varbaru = 1?>
@@ -242,6 +243,14 @@
                             @endwhile
                             <button id="next" class="btn btn-success">next</button>
                         </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <form  action="/pinjam" method="post">
+                            <input type="hidden" name="ids" id="book-dipinjam" value="">
+                            <button id="Pinjam-generate" class="btn btn-success ">kwetiaw</button>
+                            {{ csrf_field() }}
+                        </form>
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -302,7 +311,13 @@
 
     <!-- Script Section -->
     <script>
+    var arr_id=[];
 
+    function addToCart(id) {
+        arr_id.push(id);
+        alert(arr_id);
+        document.getElementById("book-dipinjam").value = arr_id;
+    }
 
     var lastClicked = 1;
 
@@ -378,6 +393,13 @@
 
         @foreach($books as $book)
             $("#pinjam_btn-{{$book->id}}").click(function(){
+                addToCart({{$book->id}});
+            });
+        @endforeach
+
+        @foreach($books as $book)
+            $("#pinjam_btn-{{$book->id}}").click(function(){
+                document.getElementById("addToCarts-text").innerHTML = {{$book->id}};
                 $("#addToCarts").show();
             });
         @endforeach
@@ -405,7 +427,6 @@
         $("#addToCarts-hide").click(function(){
             $("#addToCarts").hide();      
         });
-
     });
 
     </script> 

@@ -30,6 +30,15 @@ class RumbukController extends Controller
         return view('edit', ['book' => $book]);
     }  
 
+    public function pinjam(Request $request)
+    {
+        $ids = explode(",", $request->ids);
+        foreach ($ids as $id) {
+            $book=Book::find($id);
+            echo $book->judul;
+        }
+    }
+
     public function create()
     {
         return view('insert');
