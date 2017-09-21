@@ -35,7 +35,7 @@ class RumbukController extends Controller
         $ids = explode(",", $request->ids);
         foreach ($ids as $id) {
             $book=Book::find($id);
-            echo $book->judul + "\r\n";
+            echo $book->judul;
         }
     }
 
